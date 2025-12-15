@@ -21,6 +21,9 @@
 			.button.primary {
 				background-color: #4A90E2 !important;
 				color: #ffffff !important;
+				display: flex !important;
+				align-items: center !important;
+				justify-content: center !important;
 			}
 			
 			.button.primary:hover {
@@ -69,10 +72,10 @@
 				border-radius: 12px;
 				padding: 3rem 2.5rem;
 				text-align: center;
-				max-width: 500px;
+				max-width: 600px;
 				margin: 0 auto 2rem auto;
 				box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-				min-height: 450px;
+				min-height: 550px;
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
@@ -98,7 +101,7 @@
 			
 			#pricing .features-list {
 				text-align: left;
-				margin: 0 auto 2rem auto;
+				margin: 0 auto;
 				padding: 0;
 				list-style: none;
 				flex-grow: 1;
@@ -107,7 +110,8 @@
 			#pricing .features-list li {
 				padding: 0.75rem 0;
 				border-bottom: 1px solid rgba(255,255,255,0.2);
-				font-size: 1rem;
+				font-size: 0.95rem;
+				line-height: 1.4;
 			}
 			
 			#pricing .features-list li:last-child {
@@ -130,6 +134,7 @@
 			#pricing .pricing-cta .button {
 				font-size: 1.1rem;
 				padding: 1rem 3rem;
+				min-height: 60px;
 			}
 			
 			@media (max-width: 768px) {
@@ -269,10 +274,11 @@
 										</div>
 										<ul class="features-list">
 											<li>📇 Jusqu'à 100 contacts</li>
-											<li>🏷️ Tags par défaut</li>
+											<li>🏷️ Champs par défaut</li>
+											<li>❌ Pas de personnalisation des tags</li>
 											<li>💔 Détection unfollowers</li>
-											<li>☁️ Synchronisation cloud</li>
-											<li style="opacity: 0.6;">Champs personnalisés limités</li>
+											<li>❌ Pas de détection des Fans et demandes en attente</li>
+											<li>☁️ Synchronisation cloud des fiches contacts et des unfollowers</li>
 										</ul>
 									</div>
 									<div class="pricing-cta">
@@ -290,10 +296,11 @@
 										</div>
 										<ul class="features-list">
 											<li>📇 Jusqu'à 500 contacts</li>
-											<li>🏷️ Tags par défaut</li>
+											<li>🏷️ Champs par défaut</li>
+											<li>🎨 Personnalisation des tags</li>
 											<li>💔 Détection unfollowers</li>
-											<li>☁️ Synchronisation cloud</li>
-											<li>📊 Statistiques avancées</li>
+											<li>⭐ Détection des Fans et demandes en attente</li>
+											<li>☁️ Synchronisation cloud des fiches contacts et des unfollowers</li>
 										</ul>
 									</div>
 									<div class="pricing-cta">
@@ -311,12 +318,11 @@
 										</div>
 										<ul class="features-list">
 											<li>📇 <strong>Contacts illimités</strong></li>
-											<li>🏷️ Tags par défaut</li>
+											<li>✨ Création de champs personnalisés</li>
+											<li>🎨 Personnalisation des tags</li>
 											<li>💔 Détection unfollowers</li>
-											<li>☁️ Synchronisation cloud complète<br><small>(fans + demandes en attente)</small></li>
-											<li>✨ Champs personnalisés illimités</li>
-											<li>📊 Export de données</li>
-											<li>🎯 Support prioritaire</li>
+											<li>⭐ Détection des Fans et demandes en attente</li>
+											<li>☁️ Synchronisation cloud des fiches contacts, unfollowers, Fans et demandes en attente</li>
 										</ul>
 									</div>
 									<div class="pricing-cta">
@@ -399,25 +405,3 @@
 
 	</body>
 </html>
-```
-
----
-
-## 📋 **Changements effectués** :
-
-✅ **1. Logo** : `icon.svg` → `icon.png`
-✅ **2. Système d'onglets** : 3 onglets (Free, Premium, Pro)
-✅ **3. Carte unique** : Une seule carte affichée selon l'onglet sélectionné
-✅ **4. Même hauteur** : `min-height: 450px` pour uniformité
-✅ **5. Bouton sous la carte** : CTA séparé de la carte
-✅ **6. CTA dynamique** :
-   - Free : "Essayer gratuitement"
-   - Premium/Pro : "Souscrire"
-
----
-
-## 🎨 **Comportement** :
-```
-Clic sur "Free" → Onglet violet + Carte Free + "Essayer gratuitement"
-Clic sur "Premium" → Onglet violet + Carte Premium + "Souscrire"
-Clic sur "Pro" → Onglet violet + Carte Pro + "Souscrire"
