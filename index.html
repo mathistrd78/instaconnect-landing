@@ -32,87 +32,122 @@
 				font-weight: 700 !important;
 			}
 			
-			/* Style du tableau de tarifs */
-			#pricing .pricing-table {
-				display: grid;
-				grid-template-columns: repeat(3, 1fr);
-				gap: 2rem;
+			/* Onglets de tarifs */
+			#pricing .pricing-tabs {
+				display: flex;
+				justify-content: center;
+				gap: 1rem;
 				margin: 2rem 0;
 			}
 			
-			#pricing .pricing-card {
+			#pricing .pricing-tab {
+				padding: 1rem 2.5rem;
 				background: #f8f9fa;
-				border-radius: 12px;
-				padding: 2rem;
-				text-align: center;
-				transition: all 0.3s ease;
+				border: 2px solid transparent;
+				border-radius: 8px;
 				cursor: pointer;
-				border: 3px solid transparent;
+				font-weight: 600;
+				font-size: 1.1rem;
+				transition: all 0.3s ease;
 			}
 			
-			#pricing .pricing-card:hover {
-				transform: translateY(-5px);
-				box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+			#pricing .pricing-tab:hover {
+				border-color: #667eea;
+				transform: translateY(-3px);
 			}
 			
-			#pricing .pricing-card.selected {
+			#pricing .pricing-tab.active {
 				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 				color: white;
-				box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
 				border-color: #667eea;
 			}
 			
+			/* Carte de tarif */
+			#pricing .pricing-card {
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white;
+				border-radius: 12px;
+				padding: 3rem 2.5rem;
+				text-align: center;
+				max-width: 500px;
+				margin: 0 auto 2rem auto;
+				box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+				min-height: 450px;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+			}
+			
 			#pricing .plan-name {
-				font-size: 1.5rem;
+				font-size: 2rem;
 				font-weight: 700;
 				margin-bottom: 1rem;
 			}
 			
 			#pricing .plan-price {
-				font-size: 2.5rem;
+				font-size: 3rem;
 				font-weight: 700;
 				margin-bottom: 0.5rem;
 			}
 			
 			#pricing .plan-period {
-				font-size: 0.9rem;
-				opacity: 0.8;
+				font-size: 1rem;
+				opacity: 0.9;
 				margin-bottom: 2rem;
 			}
 			
 			#pricing .features-list {
 				text-align: left;
-				margin: 0 0 2rem 0;
+				margin: 0 auto 2rem auto;
 				padding: 0;
 				list-style: none;
+				flex-grow: 1;
 			}
 			
 			#pricing .features-list li {
 				padding: 0.75rem 0;
-				border-bottom: 1px solid rgba(255,255,255,0.1);
+				border-bottom: 1px solid rgba(255,255,255,0.2);
+				font-size: 1rem;
 			}
 			
 			#pricing .features-list li:last-child {
 				border-bottom: none;
 			}
 			
-			#pricing .pricing-card:not(.selected) .features-list li {
-				border-bottom: 1px solid rgba(0,0,0,0.1);
+			#pricing .pricing-content {
+				display: none;
 			}
 			
-			#pricing .pricing-card .button {
-				width: 100%;
-				margin: 0;
+			#pricing .pricing-content.active {
+				display: block;
+			}
+			
+			#pricing .pricing-cta {
+				text-align: center;
+				margin-top: 2rem;
+			}
+			
+			#pricing .pricing-cta .button {
+				font-size: 1.1rem;
+				padding: 1rem 3rem;
 			}
 			
 			@media (max-width: 768px) {
-				#pricing .pricing-table {
-					grid-template-columns: 1fr;
+				#pricing .pricing-tabs {
+					flex-direction: column;
+				}
+				
+				#pricing .pricing-tab {
+					width: 100%;
 				}
 			}
 			
-			body.dark-mode #pricing .pricing-card:not(.selected) {
+			body.dark-mode #pricing .pricing-tab {
 				background: #2d2d2d;
+			}
+			
+			body.dark-mode #pricing .pricing-tab.active {
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 			}
 			
 			/* Illustration spotlight */
@@ -130,7 +165,7 @@
 
 				<!-- Header -->
 					<header id="header" class="alt">
-						<span class="logo"><img src="images/icon.svg" alt="InstaConnect Logo" style="width: 80px; height: 80px;" /></span>
+						<span class="logo"><img src="images/icon.png" alt="InstaConnect Logo" style="width: 80px; height: 80px;" /></span>
 						<h1>InstaConnect</h1>
 						<p>Gérez vos contacts Instagram comme un pro<br />
 						Suivez vos unfollowers, organisez votre réseau, boostez votre networking</p>
@@ -217,46 +252,63 @@
 									<p>Choisissez l'offre qui correspond à vos besoins</p>
 								</header>
 								
-								<div class="pricing-table">
-									<!-- Plan Free -->
-									<div class="pricing-card selected" data-plan="free" onclick="selectPlan('free')">
-										<div class="plan-name">Free</div>
-										<div class="plan-price">Gratuit</div>
-										<div class="plan-period">Pour toujours</div>
+								<!-- Onglets -->
+								<div class="pricing-tabs">
+									<div class="pricing-tab active" onclick="switchPlan('free')">Free</div>
+									<div class="pricing-tab" onclick="switchPlan('premium')">Premium</div>
+									<div class="pricing-tab" onclick="switchPlan('pro')">Pro</div>
+								</div>
+								
+								<!-- Contenu Free -->
+								<div class="pricing-content active" id="plan-free">
+									<div class="pricing-card">
+										<div>
+											<div class="plan-name">Free</div>
+											<div class="plan-price">Gratuit</div>
+											<div class="plan-period">Pour toujours</div>
+										</div>
 										<ul class="features-list">
 											<li>📇 Jusqu'à 100 contacts</li>
 											<li>🏷️ Tags par défaut</li>
 											<li>💔 Détection unfollowers</li>
 											<li>☁️ Synchronisation cloud</li>
-											<li style="opacity: 0.4;">❌ Champs personnalisés</li>
-											<li style="opacity: 0.4;">❌ Export de données</li>
-											<li style="opacity: 0.4;">❌ Support prioritaire</li>
+											<li style="opacity: 0.6;">Champs personnalisés limités</li>
 										</ul>
-										<a href="https://app.instaconnect.world" class="button primary">Commencer gratuitement</a>
 									</div>
-									
-									<!-- Plan Premium -->
-									<div class="pricing-card" data-plan="premium" onclick="selectPlan('premium')">
-										<div class="plan-name">Premium</div>
-										<div class="plan-price">4,99€</div>
-										<div class="plan-period">par mois (ou 49,99€/an)</div>
+									<div class="pricing-cta">
+										<a href="https://app.instaconnect.world" class="button primary large">Essayer gratuitement</a>
+									</div>
+								</div>
+								
+								<!-- Contenu Premium -->
+								<div class="pricing-content" id="plan-premium">
+									<div class="pricing-card">
+										<div>
+											<div class="plan-name">Premium</div>
+											<div class="plan-price">4,99€</div>
+											<div class="plan-period">par mois (ou 49,99€/an)</div>
+										</div>
 										<ul class="features-list">
 											<li>📇 Jusqu'à 500 contacts</li>
 											<li>🏷️ Tags par défaut</li>
 											<li>💔 Détection unfollowers</li>
 											<li>☁️ Synchronisation cloud</li>
-											<li style="opacity: 0.4;">❌ Champs personnalisés</li>
-											<li style="opacity: 0.4;">❌ Export de données</li>
-											<li style="opacity: 0.4;">❌ Support prioritaire</li>
+											<li>📊 Statistiques avancées</li>
 										</ul>
-										<a href="#payment" class="button primary" onclick="event.stopPropagation()">Payer mon abonnement</a>
 									</div>
-									
-									<!-- Plan Pro -->
-									<div class="pricing-card" data-plan="pro" onclick="selectPlan('pro')">
-										<div class="plan-name">Pro</div>
-										<div class="plan-price">9,99€</div>
-										<div class="plan-period">par mois (ou 99,99€/an)</div>
+									<div class="pricing-cta">
+										<a href="#payment" class="button primary large">Souscrire</a>
+									</div>
+								</div>
+								
+								<!-- Contenu Pro -->
+								<div class="pricing-content" id="plan-pro">
+									<div class="pricing-card">
+										<div>
+											<div class="plan-name">Pro</div>
+											<div class="plan-price">9,99€</div>
+											<div class="plan-period">par mois (ou 99,99€/an)</div>
+										</div>
 										<ul class="features-list">
 											<li>📇 <strong>Contacts illimités</strong></li>
 											<li>🏷️ Tags par défaut</li>
@@ -266,7 +318,9 @@
 											<li>📊 Export de données</li>
 											<li>🎯 Support prioritaire</li>
 										</ul>
-										<a href="#payment" class="button primary" onclick="event.stopPropagation()">Payer mon abonnement</a>
+									</div>
+									<div class="pricing-cta">
+										<a href="#payment" class="button primary large">Souscrire</a>
 									</div>
 								</div>
 							</section>
@@ -328,16 +382,42 @@
 			<script src="assets/js/main.js"></script>
 			
 			<script>
-				function selectPlan(plan) {
-					// Retirer la sélection de toutes les cartes
-					document.querySelectorAll('.pricing-card').forEach(card => {
-						card.classList.remove('selected');
+				function switchPlan(plan) {
+					// Désactiver tous les onglets et contenus
+					document.querySelectorAll('.pricing-tab').forEach(tab => {
+						tab.classList.remove('active');
+					});
+					document.querySelectorAll('.pricing-content').forEach(content => {
+						content.classList.remove('active');
 					});
 					
-					// Sélectionner la carte cliquée
-					document.querySelector(`.pricing-card[data-plan="${plan}"]`).classList.add('selected');
+					// Activer l'onglet et le contenu sélectionné
+					document.querySelector(`.pricing-tab:nth-child(${plan === 'free' ? 1 : plan === 'premium' ? 2 : 3})`).classList.add('active');
+					document.getElementById(`plan-${plan}`).classList.add('active');
 				}
 			</script>
 
 	</body>
 </html>
+```
+
+---
+
+## 📋 **Changements effectués** :
+
+✅ **1. Logo** : `icon.svg` → `icon.png`
+✅ **2. Système d'onglets** : 3 onglets (Free, Premium, Pro)
+✅ **3. Carte unique** : Une seule carte affichée selon l'onglet sélectionné
+✅ **4. Même hauteur** : `min-height: 450px` pour uniformité
+✅ **5. Bouton sous la carte** : CTA séparé de la carte
+✅ **6. CTA dynamique** :
+   - Free : "Essayer gratuitement"
+   - Premium/Pro : "Souscrire"
+
+---
+
+## 🎨 **Comportement** :
+```
+Clic sur "Free" → Onglet violet + Carte Free + "Essayer gratuitement"
+Clic sur "Premium" → Onglet violet + Carte Premium + "Souscrire"
+Clic sur "Pro" → Onglet violet + Carte Pro + "Souscrire"
