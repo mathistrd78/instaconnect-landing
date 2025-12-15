@@ -17,14 +17,14 @@
 				padding: 3rem 0 1rem 0 !important;
 			}
 			
-			/* Boutons primary avec couleur correcte */
+			/* Boutons primary avec couleur plus foncée */
 			.button.primary {
-				background-color: #8cc9f0 !important;
+				background-color: #4A90E2 !important;
 				color: #ffffff !important;
 			}
 			
 			.button.primary:hover {
-				background-color: #6eb8e8 !important;
+				background-color: #357ABD !important;
 			}
 			
 			/* Titres en gras dans la section features */
@@ -45,17 +45,21 @@
 				border-radius: 12px;
 				padding: 2rem;
 				text-align: center;
-				transition: transform 0.3s ease;
+				transition: all 0.3s ease;
+				cursor: pointer;
+				border: 3px solid transparent;
 			}
 			
 			#pricing .pricing-card:hover {
-				transform: translateY(-10px);
+				transform: translateY(-5px);
+				box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 			}
 			
-			#pricing .pricing-card.featured {
+			#pricing .pricing-card.selected {
 				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 				color: white;
 				box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+				border-color: #667eea;
 			}
 			
 			#pricing .plan-name {
@@ -78,7 +82,7 @@
 			
 			#pricing .features-list {
 				text-align: left;
-				margin: 0;
+				margin: 0 0 2rem 0;
 				padding: 0;
 				list-style: none;
 			}
@@ -92,8 +96,13 @@
 				border-bottom: none;
 			}
 			
-			#pricing .pricing-card:not(.featured) .features-list li {
+			#pricing .pricing-card:not(.selected) .features-list li {
 				border-bottom: 1px solid rgba(0,0,0,0.1);
+			}
+			
+			#pricing .pricing-card .button {
+				width: 100%;
+				margin: 0;
 			}
 			
 			@media (max-width: 768px) {
@@ -102,8 +111,15 @@
 				}
 			}
 			
-			body.dark-mode #pricing .pricing-card:not(.featured) {
+			body.dark-mode #pricing .pricing-card:not(.selected) {
 				background: #2d2d2d;
+			}
+			
+			/* Illustration spotlight */
+			.spotlight .image img {
+				border-radius: 50%;
+				width: 100%;
+				height: auto;
 			}
 		</style>
 	</head>
@@ -114,7 +130,7 @@
 
 				<!-- Header -->
 					<header id="header" class="alt">
-						<span class="logo"><img src="images/icon.png" alt="InstaConnect Logo" style="width: 80px; height: 80px;" /></span>
+						<span class="logo"><img src="images/icon.svg" alt="InstaConnect Logo" style="width: 80px; height: 80px;" /></span>
 						<h1>InstaConnect</h1>
 						<p>Gérez vos contacts Instagram comme un pro<br />
 						Suivez vos unfollowers, organisez votre réseau, boostez votre networking</p>
@@ -147,7 +163,7 @@
 											<li><a href="https://app.instaconnect.world" class="button primary">Essayer gratuitement</a></li>
 										</ul>
 									</div>
-									<span class="image"><img src="images/pic01.jpg" alt="" /></span>
+									<span class="image"><img src="images/app-screenshot.png" alt="InstaConnect App" /></span>
 								</div>
 							</section>
 
@@ -203,7 +219,7 @@
 								
 								<div class="pricing-table">
 									<!-- Plan Free -->
-									<div class="pricing-card">
+									<div class="pricing-card selected" data-plan="free" onclick="selectPlan('free')">
 										<div class="plan-name">Free</div>
 										<div class="plan-price">Gratuit</div>
 										<div class="plan-period">Pour toujours</div>
@@ -216,10 +232,11 @@
 											<li style="opacity: 0.4;">❌ Export de données</li>
 											<li style="opacity: 0.4;">❌ Support prioritaire</li>
 										</ul>
+										<a href="https://app.instaconnect.world" class="button primary">Commencer gratuitement</a>
 									</div>
 									
-									<!-- Plan Premium (Featured) -->
-									<div class="pricing-card featured">
+									<!-- Plan Premium -->
+									<div class="pricing-card" data-plan="premium" onclick="selectPlan('premium')">
 										<div class="plan-name">Premium</div>
 										<div class="plan-price">4,99€</div>
 										<div class="plan-period">par mois (ou 49,99€/an)</div>
@@ -232,10 +249,11 @@
 											<li style="opacity: 0.4;">❌ Export de données</li>
 											<li style="opacity: 0.4;">❌ Support prioritaire</li>
 										</ul>
+										<a href="#payment" class="button primary" onclick="event.stopPropagation()">Payer mon abonnement</a>
 									</div>
 									
 									<!-- Plan Pro -->
-									<div class="pricing-card">
+									<div class="pricing-card" data-plan="pro" onclick="selectPlan('pro')">
 										<div class="plan-name">Pro</div>
 										<div class="plan-price">9,99€</div>
 										<div class="plan-period">par mois (ou 99,99€/an)</div>
@@ -248,14 +266,9 @@
 											<li>📊 Export de données</li>
 											<li>🎯 Support prioritaire</li>
 										</ul>
+										<a href="#payment" class="button primary" onclick="event.stopPropagation()">Payer mon abonnement</a>
 									</div>
 								</div>
-								
-								<footer class="major">
-									<ul class="actions special">
-										<li><a href="https://app.instaconnect.world" class="button primary">Commencer gratuitement</a></li>
-									</ul>
-								</footer>
 							</section>
 
 						<!-- Téléchargements -->
@@ -313,7 +326,18 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			
+			<script>
+				function selectPlan(plan) {
+					// Retirer la sélection de toutes les cartes
+					document.querySelectorAll('.pricing-card').forEach(card => {
+						card.classList.remove('selected');
+					});
+					
+					// Sélectionner la carte cliquée
+					document.querySelector(`.pricing-card[data-plan="${plan}"]`).classList.add('selected');
+				}
+			</script>
 
 	</body>
 </html>
-
