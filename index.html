@@ -12,171 +12,182 @@
 		<link rel="icon" href="images/icon.png">
 		
 		<style>
-			/* Réduire l'espace du header */
-			#header {
-				padding: 3rem 0 1rem 0 !important;
-			}
-			
-			/* Boutons primary avec couleur plus foncée */
-			.button.primary {
-				background-color: #4A90E2 !important;
-				color: #ffffff !important;
-				display: flex !important;
-				align-items: center !important;
-				justify-content: center !important;
-			}
-			
-			.button.primary:hover {
-				background-color: #357ABD !important;
-			}
-			
-			/* Titres en gras dans la section features */
-			#features .features h3 {
-				font-weight: 700 !important;
-			}
-			
-			/* Onglets de tarifs */
-			#pricing .pricing-tabs {
-				display: flex;
-				justify-content: center;
-				gap: 1rem;
-				margin: 2rem 0;
-			}
-			
-			#pricing .pricing-tab {
-				padding: 1rem 2.5rem;
-				background: #f8f9fa;
-				border: 2px solid transparent;
-				border-radius: 8px;
-				cursor: pointer;
-				font-weight: 600;
-				font-size: 1.1rem;
-				transition: all 0.3s ease;
-			}
-			
-			#pricing .pricing-tab:hover {
-				border-color: #667eea;
-				transform: translateY(-3px);
-			}
-			
-			#pricing .pricing-tab.active {
-				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-				color: white;
-				border-color: #667eea;
-			}
-			
-			/* Carte de tarif */
-			#pricing .pricing-card {
-				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-				color: white;
-				border-radius: 12px;
-				padding: 3rem 2.5rem;
-				text-align: center;
-				max-width: 600px;
-				margin: 0 auto 2rem auto;
-				box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-				min-height: 550px;
-				display: flex;
-				flex-direction: column;
-				justify-content: space-between;
-			}
-			
-			#pricing .plan-name {
-				font-size: 2rem;
-				font-weight: 700;
-				margin-bottom: 1rem;
-			}
-			
-			#pricing .plan-price {
-				font-size: 3rem;
-				font-weight: 700;
-				margin-bottom: 0.5rem;
-			}
-			
-			#pricing .plan-period {
-				font-size: 1rem;
-				opacity: 0.9;
-				margin-bottom: 2rem;
-			}
-			
-			#pricing .features-list {
-				text-align: left;
-				margin: 0 auto;
-				padding: 0;
-				list-style: none;
-				flex-grow: 1;
-			}
-			
-			#pricing .features-list li {
-				padding: 0.75rem 0;
-				border-bottom: 1px solid rgba(255,255,255,0.2);
-				font-size: 0.95rem;
-				line-height: 1.4;
-			}
-			
-			#pricing .features-list li:last-child {
-				border-bottom: none;
-			}
-			
-			#pricing .pricing-content {
-				display: none;
-			}
-			
-			#pricing .pricing-content.active {
-				display: block;
-			}
-			
-			#pricing .pricing-cta {
-				text-align: center;
-				margin-top: 2rem;
-			}
-			
-			#pricing .pricing-cta .button {
-				font-size: 1.1rem;
-				padding: 1rem 2rem;
-				min-height: 60px;
-				max-width: 300px;
-				margin: 0 auto;
-			}
-			
-			/* Menu mobile compact */
-			@media (max-width: 980px) {
-				#nav ul li a {
-					font-size: 0.7rem !important;
-					padding: 0.3rem 0.5rem !important;
-				}
-				
-				#nav ul {
-					gap: 0.3rem;
-				}
-			}
-			
-			/* Responsive mobile */
-			@media (max-width: 768px) {
-				#pricing .pricing-tabs {
-					flex-direction: row;
-					gap: 0.5rem;
-				}
-				
-				#pricing .pricing-tab {
-					padding: 0.75rem 1rem;
-					font-size: 0.95rem;
-					flex: 1;
-				}
-				
-				#pricing .pricing-card {
-					padding: 2rem 1.5rem;
-				}
-			}
-			
-			body.dark-mode #pricing .pricing-tab {
-				background: #2d2d2d;
-			}
-			
-			body.dark-mode #pricing .pricing-tab.active {
-				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-			}
-		</style>
+	/* Réduire l'espace du header */
+	#header {
+		padding: 3rem 0 1rem 0 !important;
+	}
+	
+	/* Boutons primary avec couleur plus foncée */
+	.button.primary {
+		background-color: #4A90E2 !important;
+		color: #ffffff !important;
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+	}
+	
+	.button.primary:hover {
+		background-color: #357ABD !important;
+	}
+	
+	/* Titres en gras dans la section features */
+	#features .features h3 {
+		font-weight: 700 !important;
+	}
+	
+	/* Menu toujours visible */
+	#nav {
+		display: block !important;
+		position: sticky !important;
+		top: 0 !important;
+		z-index: 10000 !important;
+		background: rgba(36, 41, 67, 0.95) !important;
+		backdrop-filter: blur(10px) !important;
+	}
+	
+	#nav ul {
+		display: flex !important;
+		justify-content: center !important;
+		flex-wrap: wrap !important;
+		margin: 0 !important;
+		padding: 1rem 0 !important;
+	}
+	
+	/* Onglets de tarifs */
+	#pricing .pricing-tabs {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+		margin: 2rem 0;
+	}
+	
+	#pricing .pricing-tab {
+		padding: 1rem 2.5rem;
+		background: #f8f9fa;
+		border: 2px solid transparent;
+		border-radius: 8px;
+		cursor: pointer;
+		font-weight: 600;
+		font-size: 1.1rem;
+		transition: all 0.3s ease;
+	}
+	
+	#pricing .pricing-tab:hover {
+		border-color: #667eea;
+		transform: translateY(-3px);
+	}
+	
+	#pricing .pricing-tab.active {
+		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+		color: white;
+		border-color: #667eea;
+	}
+	
+	/* Carte de tarif */
+	#pricing .pricing-card {
+		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+		color: white;
+		border-radius: 12px;
+		padding: 3rem 2.5rem;
+		text-align: center;
+		max-width: 600px;
+		margin: 0 auto 2rem auto;
+		box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+		min-height: 550px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+	
+	#pricing .plan-name {
+		font-size: 2rem;
+		font-weight: 700;
+		margin-bottom: 1rem;
+	}
+	
+	#pricing .plan-price {
+		font-size: 3rem;
+		font-weight: 700;
+		margin-bottom: 0.5rem;
+	}
+	
+	#pricing .plan-period {
+		font-size: 1rem;
+		opacity: 0.9;
+		margin-bottom: 2rem;
+	}
+	
+	#pricing .features-list {
+		text-align: left;
+		margin: 0 auto;
+		padding: 0;
+		list-style: none;
+		flex-grow: 1;
+	}
+	
+	#pricing .features-list li {
+		padding: 0.75rem 0;
+		border-bottom: 1px solid rgba(255,255,255,0.2);
+		font-size: 0.95rem;
+		line-height: 1.4;
+	}
+	
+	#pricing .features-list li:last-child {
+		border-bottom: none;
+	}
+	
+	#pricing .pricing-content {
+		display: none;
+	}
+	
+	#pricing .pricing-content.active {
+		display: block;
+	}
+	
+	#pricing .pricing-cta {
+		text-align: center;
+		margin-top: 2rem;
+	}
+	
+	#pricing .pricing-cta .button {
+		font-size: 1.1rem;
+		padding: 1rem 2rem;
+		min-height: 60px;
+		max-width: 300px;
+		margin: 0 auto;
+	}
+	
+	/* Menu mobile adapté */
+	@media (max-width: 768px) {
+		#nav ul li a {
+			font-size: 0.75rem !important;
+			padding: 0.4rem 0.6rem !important;
+		}
+		
+		#pricing .pricing-tabs {
+			flex-direction: row;
+			gap: 0.5rem;
+		}
+		
+		#pricing .pricing-tab {
+			padding: 0.75rem 1rem;
+			font-size: 0.95rem;
+			flex: 1;
+		}
+		
+		#pricing .pricing-card {
+			padding: 2rem 1.5rem;
+		}
+	}
+	
+	body.dark-mode #pricing .pricing-tab {
+		background: #2d2d2d;
+	}
+	
+	body.dark-mode #pricing .pricing-tab.active {
+		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	}
+</style>
 	</head>
 	<body class="is-preload">
 
@@ -420,3 +431,4 @@
 
 	</body>
 </html>
+
