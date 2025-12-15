@@ -139,13 +139,28 @@
 				margin: 0 auto;
 			}
 			
+			/* Menu mobile visible */
+			@media (max-width: 980px) {
+				#nav {
+					display: block !important;
+				}
+			}
+			
+			/* Responsive mobile */
 			@media (max-width: 768px) {
 				#pricing .pricing-tabs {
-					flex-direction: column;
+					flex-direction: row;
+					gap: 0.5rem;
 				}
 				
 				#pricing .pricing-tab {
-					width: 100%;
+					padding: 0.75rem 1rem;
+					font-size: 0.95rem;
+					flex: 1;
+				}
+				
+				#pricing .pricing-card {
+					padding: 2rem 1.5rem;
 				}
 			}
 			
@@ -155,13 +170,6 @@
 			
 			body.dark-mode #pricing .pricing-tab.active {
 				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-			}
-			
-			/* Illustration spotlight */
-			.spotlight .image img {
-				border-radius: 50%;
-				width: 100%;
-				height: auto;
 			}
 		</style>
 	</head>
@@ -192,21 +200,21 @@
 					<div id="main">
 
 						<!-- Introduction -->
-						<section id="intro" class="main">
-							<div class="spotlight">
-								<div class="content">
-									<header class="major">
-										<h2>Votre carnet d'adresses Instagram intelligent</h2>
-									</header>
-									<p>InstaConnect transforme vos contacts Instagram en véritable CRM professionnel. 
-									Créez des fiches détaillées, suivez vos unfollowers, organisez votre réseau avec des tags personnalisés 
-									et ne perdez plus jamais le contact avec les personnes importantes.</p>
-									<ul class="actions">
-										<li><a href="https://app.instaconnect.world" class="button primary">Essayer gratuitement</a></li>
+							<section id="intro" class="main">
+								<div class="spotlight">
+									<div class="content">
+										<header class="major">
+											<h2>Votre carnet d'adresses Instagram intelligent</h2>
+										</header>
+										<p>InstaConnect transforme vos contacts Instagram en véritable CRM professionnel. 
+										Créez des fiches détaillées, suivez vos unfollowers, organisez votre réseau avec des tags personnalisés 
+										et ne perdez plus jamais le contact avec les personnes importantes.</p>
+										<ul class="actions">
+											<li><a href="https://app.instaconnect.world" class="button primary">Essayer gratuitement</a></li>
 										</ul>
+									</div>
 								</div>
-							</div>
-						</section>
+							</section>
 
 						<!-- Fonctionnalités -->
 							<section id="features" class="main special">
@@ -318,13 +326,13 @@
 											<div class="plan-period">par mois (ou 99,99€/an)</div>
 										</div>
 										<ul class="features-list">
-										<li>📇 <strong style="color: white;">Contacts illimités</strong></li>
-										<li>✨ Création de champs personnalisés</li>
-										<li>🎨 Personnalisation des tags</li>
-										<li>💔 Détection unfollowers</li>
-										<li>⭐ Détection des Fans et demandes en attente</li>
-										<li>☁️ Synchronisation cloud des fiches contacts, unfollowers, Fans et demandes en attente</li>
-										<li>🎯 Support prioritaire</li>
+											<li>📇 <strong style="color: white;">Contacts illimités</strong></li>
+											<li>✨ Création de champs personnalisés</li>
+											<li>🎨 Personnalisation des tags</li>
+											<li>💔 Détection unfollowers</li>
+											<li>⭐ Détection des Fans et demandes en attente</li>
+											<li>☁️ Synchronisation cloud des fiches contacts, unfollowers, Fans et demandes en attente</li>
+											<li>🎯 Support prioritaire</li>
 										</ul>
 									</div>
 									<div class="pricing-cta">
@@ -407,5 +415,3 @@
 
 	</body>
 </html>
-
-
