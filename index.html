@@ -10,6 +10,102 @@
 		
 		<!-- Favicon -->
 		<link rel="icon" href="images/icon.png">
+		
+		<style>
+			/* Réduire l'espace du header */
+			#header {
+				padding: 3rem 0 1rem 0 !important;
+			}
+			
+			/* Boutons primary avec couleur correcte */
+			.button.primary {
+				background-color: #8cc9f0 !important;
+				color: #ffffff !important;
+			}
+			
+			.button.primary:hover {
+				background-color: #6eb8e8 !important;
+			}
+			
+			/* Titres en gras dans la section features */
+			#features .features h3 {
+				font-weight: 700 !important;
+			}
+			
+			/* Style du tableau de tarifs */
+			#pricing .pricing-table {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 2rem;
+				margin: 2rem 0;
+			}
+			
+			#pricing .pricing-card {
+				background: #f8f9fa;
+				border-radius: 12px;
+				padding: 2rem;
+				text-align: center;
+				transition: transform 0.3s ease;
+			}
+			
+			#pricing .pricing-card:hover {
+				transform: translateY(-10px);
+			}
+			
+			#pricing .pricing-card.featured {
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white;
+				box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+			}
+			
+			#pricing .plan-name {
+				font-size: 1.5rem;
+				font-weight: 700;
+				margin-bottom: 1rem;
+			}
+			
+			#pricing .plan-price {
+				font-size: 2.5rem;
+				font-weight: 700;
+				margin-bottom: 0.5rem;
+			}
+			
+			#pricing .plan-period {
+				font-size: 0.9rem;
+				opacity: 0.8;
+				margin-bottom: 2rem;
+			}
+			
+			#pricing .features-list {
+				text-align: left;
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			
+			#pricing .features-list li {
+				padding: 0.75rem 0;
+				border-bottom: 1px solid rgba(255,255,255,0.1);
+			}
+			
+			#pricing .features-list li:last-child {
+				border-bottom: none;
+			}
+			
+			#pricing .pricing-card:not(.featured) .features-list li {
+				border-bottom: 1px solid rgba(0,0,0,0.1);
+			}
+			
+			@media (max-width: 768px) {
+				#pricing .pricing-table {
+					grid-template-columns: 1fr;
+				}
+			}
+			
+			body.dark-mode #pricing .pricing-card:not(.featured) {
+				background: #2d2d2d;
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 
@@ -18,7 +114,7 @@
 
 				<!-- Header -->
 					<header id="header" class="alt">
-						<span class="logo"><img src="images/logo.svg" alt="" /></span>
+						<span class="logo"><img src="images/logo.png" alt="InstaConnect Logo" style="width: 80px; height: 80px;" /></span>
 						<h1>InstaConnect</h1>
 						<p>Gérez vos contacts Instagram comme un pro<br />
 						Suivez vos unfollowers, organisez votre réseau, boostez votre networking</p>
@@ -68,9 +164,10 @@
 										Tout votre réseau centralisé en un seul endroit.</p>
 									</li>
 									<li>
-										<span class="icon major style3 fa-heart-broken"></span>
+										<span class="icon solid major style3 fa-user-times"></span>
 										<h3>Détection d'unfollowers</h3>
-										<p>Identifiez instantanément qui vous a unfollow. Recevez des alertes et gérez votre liste "À ne plus suivre".</p>
+										<p>Identifiez instantanément qui vous a unfollow. Gérez votre liste "À ne plus suivre" 
+										pour éviter de suivre de nouveau ces personnes.</p>
 									</li>
 									<li>
 										<span class="icon major style5 fa-star"></span>
@@ -103,40 +200,57 @@
 									<h2>Tarifs simples et transparents</h2>
 									<p>Choisissez l'offre qui correspond à vos besoins</p>
 								</header>
-								<div class="table-wrapper">
-									<table>
-										<thead>
-											<tr>
-												<th>Plan</th>
-												<th>Prix</th>
-												<th>Fonctionnalités</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td><strong>Gratuit</strong></td>
-												<td>0€/mois</td>
-												<td>
-													✅ Jusqu'à 100 contacts<br>
-													✅ Détection unfollowers<br>
-													✅ Tags de base<br>
-													✅ Synchronisation cloud
-												</td>
-											</tr>
-											<tr>
-												<td><strong>Premium</strong></td>
-												<td>4,99€/mois<br><small>ou 49€/an</small></td>
-												<td>
-													✅ <strong>Contacts illimités</strong><br>
-													✅ Champs personnalisés illimités<br>
-													✅ Export de données<br>
-													✅ Statistiques avancées<br>
-													✅ Support prioritaire
-												</td>
-											</tr>
-										</tbody>
-									</table>
+								
+								<div class="pricing-table">
+									<!-- Plan Free -->
+									<div class="pricing-card">
+										<div class="plan-name">Free</div>
+										<div class="plan-price">Gratuit</div>
+										<div class="plan-period">Pour toujours</div>
+										<ul class="features-list">
+											<li>📇 Jusqu'à 100 contacts</li>
+											<li>🏷️ Tags par défaut</li>
+											<li>💔 Détection unfollowers</li>
+											<li>☁️ Synchronisation cloud</li>
+											<li style="opacity: 0.4;">❌ Champs personnalisés</li>
+											<li style="opacity: 0.4;">❌ Export de données</li>
+											<li style="opacity: 0.4;">❌ Support prioritaire</li>
+										</ul>
+									</div>
+									
+									<!-- Plan Premium (Featured) -->
+									<div class="pricing-card featured">
+										<div class="plan-name">Premium</div>
+										<div class="plan-price">4,99€</div>
+										<div class="plan-period">par mois (ou 49,99€/an)</div>
+										<ul class="features-list">
+											<li>📇 Jusqu'à 500 contacts</li>
+											<li>🏷️ Tags par défaut</li>
+											<li>💔 Détection unfollowers</li>
+											<li>☁️ Synchronisation cloud</li>
+											<li style="opacity: 0.4;">❌ Champs personnalisés</li>
+											<li style="opacity: 0.4;">❌ Export de données</li>
+											<li style="opacity: 0.4;">❌ Support prioritaire</li>
+										</ul>
+									</div>
+									
+									<!-- Plan Pro -->
+									<div class="pricing-card">
+										<div class="plan-name">Pro</div>
+										<div class="plan-price">9,99€</div>
+										<div class="plan-period">par mois (ou 99,99€/an)</div>
+										<ul class="features-list">
+											<li>📇 <strong>Contacts illimités</strong></li>
+											<li>🏷️ Tags par défaut</li>
+											<li>💔 Détection unfollowers</li>
+											<li>☁️ Synchronisation cloud complète<br><small>(fans + demandes en attente)</small></li>
+											<li>✨ Champs personnalisés illimités</li>
+											<li>📊 Export de données</li>
+											<li>🎯 Support prioritaire</li>
+										</ul>
+									</div>
 								</div>
+								
 								<footer class="major">
 									<ul class="actions special">
 										<li><a href="https://app.instaconnect.world" class="button primary">Commencer gratuitement</a></li>
@@ -169,7 +283,7 @@
 						<section>
 							<h2>À propos d'InstaConnect</h2>
 							<p>InstaConnect est un outil de gestion de contacts Instagram conçu pour les professionnels, 
-							influenceurs et entrepreneurs qui souhaitent entretenir leur réseau efficacement. 
+							particuliers, influenceurs et entrepreneurs qui souhaitent entretenir leur réseau efficacement. 
 							Développé avec passion pour simplifier votre networking sur Instagram.</p>
 						</section>
 						<section>
